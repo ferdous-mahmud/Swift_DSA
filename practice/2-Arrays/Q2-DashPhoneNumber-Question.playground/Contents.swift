@@ -21,10 +21,51 @@ import UIKit
  - spaces and dashes don't matter
  - if the block ends in anything other than -xxx or -xx reformat to a block of two like xx-xx (not obvious)
  
+ 
+ Time Complexity : O(N)
+ Space Complexity: O(1)
+ 
  */
 func solution(_ S : String) -> String {
-    // do your work here
-    return ""
+    
+    if S.count == 1 {
+        return S
+    }
+    
+    var result = ""
+    let numbers: Set = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
+    
+    var now = ""
+    
+    for i in S {
+        let s = String(i)
+        if numbers.contains(s) {
+            result += s
+            now += s
+            if now.count == 3 {
+                now = ""
+                result += "-"
+            }
+        }
+    }
+    
+    if result.last == "-" {
+        result.removeLast()
+    }
+    
+    if result[result.count - 2] == "-" {
+        let n2 = result.last!
+        result.removeLast()
+        result.removeLast()
+        let n1 = result.last!
+        result.removeLast()
+        result += "-"
+        result += String(n1)
+        result += String(n2)
+    }
+    
+    
+    return result
 }
 
 solution("123456789")           // 123-456-789
@@ -37,3 +78,10 @@ solution("012")                         // 012
 solution("0123")                        // 01-23
 solution("0123       444")              // 012-34-44
 solution("------0123       444")        // 012-34-44
+
+
+extension StringProtocol {
+    subscript(offset: Int) -> Character {
+        self[index(startIndex, offsetBy: offset)]
+    }
+}
