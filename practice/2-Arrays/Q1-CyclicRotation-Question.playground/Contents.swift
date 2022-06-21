@@ -13,12 +13,29 @@ import UIKit
      [3, 8, 9, 7, 6] -> [6, 3, 8, 9, 7]
      [6, 3, 8, 9, 7] -> [7, 6, 3, 8, 9]
      [7, 6, 3, 8, 9] -> [9, 7, 6, 3, 8]
+ 
+ Time Complexity: O(N^K)
 
  */
 
 func solution(A: [Int], K: Int) -> [Int] {
-    // do your work here...
-    return [Int]()
+    
+    var result = [Int]()
+    var temp = A
+    let last = A.count - 1
+    
+    for i in 1...K {
+        result.append(temp[last])
+        for i in 0...last - 1 {
+            result.append(temp[i])
+        }
+        temp = result
+        if i != K {
+            result.removeAll()
+        }
+    }
+    
+    return result
 }
 
 solution(A: [1, 2, 3, 4, 5], K: 1) // 5 1 2 3 4
