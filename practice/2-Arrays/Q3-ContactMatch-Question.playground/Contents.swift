@@ -17,8 +17,26 @@ import Foundation
  */
 
 public func solution(_ A : [String], _ B : [String], _ P : String) -> String {
-    // do your work here
-    return ""
+    
+    if A.isEmpty || B.isEmpty || P.isEmpty {
+        return "Invalid"
+    }
+    
+    var result: [String] = []
+    
+    for i in 0...B.count - 1 {
+        if B[i].contains(P) {
+            result.append(A[i])
+        }
+    }
+    
+    result.sort()
+    
+    if result.count != 0 {
+        return result[0]
+    }
+    
+    return "NO CONTACT"
 }
 
 let A = ["pim", "pom"]
