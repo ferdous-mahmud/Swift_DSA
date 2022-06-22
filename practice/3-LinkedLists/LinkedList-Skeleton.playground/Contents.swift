@@ -10,57 +10,77 @@ class Node {
     }
 }
 
-class LinkList {
-    private var head: Node?
-        
-    func addFront(_ data: Int) {
-    }
+let node3 = Node(30)
+let node2 = Node(20, node3)
+let node1 = Node(10, node2) // Head
 
-    func getFirst() -> Int? {
-        return 0
-    }
-
-    func addBack(_ data: Int) {
-    }
-
-    func getLast() -> Int? {
-        return nil
-    }
-
-    func insert(position: Int, data: Int) {
+func printLinkedList (_ head: Node?){
+    if head == nil {
+        return
     }
     
-    func deleteFirst() {
-    }
-
-    func deleteLast() {
-    }
+    var node = head
+    print(node!.data)
     
-    func delete(at position: Int) {
-    }
-    
-    var isEmpty: Bool {
-        return false
-    }
-    
-    func clear() {
-    }
-    
-    func printLinkedList() {
-        if head == nil { return }
-        
-        var result = [Int]()
-        var node = head
-        result.append(node!.data)
-        
-        while node?.next != nil {
-            result.append(node!.next!.data)
-            node = node?.next
-        }
-        
-        print(result)
+    while node!.next != nil {
+        print(node!.next!.data)
+        node = node?.next
     }
 }
 
-let linkedList = LinkList()
+printLinkedList(node1)
+
+//class LinkList {
+//    private var head: Node?
+//
+//    func addFront(_ data: Int) {
+//    }
+//
+//    func getFirst() -> Int? {
+//        return 0
+//    }
+//
+//    func addBack(_ data: Int) {
+//    }
+//
+//    func getLast() -> Int? {
+//        return nil
+//    }
+//
+//    func insert(position: Int, data: Int) {
+//    }
+//
+//    func deleteFirst() {
+//    }
+//
+//    func deleteLast() {
+//    }
+//
+//    func delete(at position: Int) {
+//    }
+//
+//    var isEmpty: Bool {
+//        return false
+//    }
+//
+//    func clear() {
+//    }
+//
+//    func printLinkedList() {
+//        if head == nil { return }
+//
+//        var result = [Int]()
+//        var node = head
+//        result.append(node!.data)
+//
+//        while node?.next != nil {
+//            result.append(node!.next!.data)
+//            node = node?.next
+//        }
+//
+//        print(result)
+//    }
+//}
+//
+//let linkedList = LinkList()
 
