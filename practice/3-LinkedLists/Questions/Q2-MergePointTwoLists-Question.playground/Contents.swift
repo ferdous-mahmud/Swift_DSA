@@ -49,7 +49,30 @@ func printLinkedList(_ head: Node?) {
 }
 
 func findMerge(headA: Node?, headB: Node?) -> Int? {
-    // Here...
+    var node1 = headA
+    var node2 = headB
+    
+    var n1 = [Int]()
+    var n2 = [Int]()
+    
+    while node1 != nil {
+        n1.append(node1!.data)
+        node1 = node1?.next
+    }
+    
+    while node2 != nil {
+        n2.append(node2!.data)
+        node2 = node2?.next
+    }
+    
+    for n in n1 {
+        for m in n2 {
+            if n == m {
+                return n
+            }
+        }
+    }
+    
     return nil
 }
 

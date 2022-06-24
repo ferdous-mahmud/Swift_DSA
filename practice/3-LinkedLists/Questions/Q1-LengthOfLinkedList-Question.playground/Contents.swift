@@ -42,3 +42,4 @@ let node1 = Node(1, node2)
 length(nil) // 0
 length(node5) // 2
 length(node1) // 6
+length(node6)
