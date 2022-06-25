@@ -88,7 +88,7 @@ func findMergeUsingDictonary(headA: Node?, headB: Node?) -> Int? {
     
     var node2 = headB
     for _ in 1...n {
-        if d.keys.contains(node2!.data) {
+        if d[node2!.data] == true {
             return node2!.data
         }
         node2 = node2?.next
@@ -97,6 +97,47 @@ func findMergeUsingDictonary(headA: Node?, headB: Node?) -> Int? {
     return nil
 }
 
+// Time Complexity = O(n) -> Without extra data structure
+func findMergeUsingSubtract(headA: Node?, headB: Node?) -> Int? {
+    
+    let m = length(headA)
+    let n = length(headB)
+    var node1 = headA
+    var node2 = headB
+    var sub = 0
+    
+    if m >= n {
+        sub = m - n
+        for _ in 1...sub {
+            node1 = node1?.next
+        }
+        
+        for _ in 1...n {
+            if node1?.data == node2?.data {
+                return node1!.data
+            }
+            
+            node2 = node2?.next
+            node1 = node1?.next
+        }
+    } else {
+        sub = n - m
+        for _ in 1...sub {
+            node2 = node2?.next
+        }
+        
+        for _ in 1...m {
+            if node1?.data == node2?.data {
+                return node1!.data
+            }
+            
+            node2 = node2?.next
+            node1 = node1?.next
+        }
+    }
+    
+    return nil
+}
 
 // 1 2 3 4 5 6
 let node6 = Node(6)
@@ -115,3 +156,4 @@ printLinkedList(node10)
 
 findMergeBrout(headA: node1, headB: node10)
 findMergeUsingDictonary(headA: node1, headB: node10)
+findMergeUsingSubtract(headA: node10, headB: node1)
