@@ -48,33 +48,55 @@ func printLinkedList(_ head: Node?) {
     print(result)
 }
 
-func findMerge(headA: Node?, headB: Node?) -> Int? {
-    var node1 = headA
-    var node2 = headB
+// Time Complexity = O(n ^ 2)
+func findMergeBrout(headA: Node?, headB: Node?) -> Int? {
+    let m = length(headA)
+    let n = length(headB)
     
-    var n1 = [Int]()
-    var n2 = [Int]()
+    var currentA = headA
     
-    while node1 != nil {
-        n1.append(node1!.data)
-        node1 = node1?.next
-    }
-    
-    while node2 != nil {
-        n2.append(node2!.data)
-        node2 = node2?.next
-    }
-    
-    for n in n1 {
-        for m in n2 {
-            if n == m {
-                return n
+    for _ in 0...m-1 {
+        var currentB = headB
+        for _ in 0...n-1 {
+            let A = currentA?.data
+            let B = currentB?.data
+            
+            if A == B {
+                return A
             }
+            currentB = currentB?.next
         }
+        currentA = currentA?.next
     }
     
     return nil
 }
+
+// Time Complexity = O(n)
+func findMergeUsingDictonary(headA: Node?, headB: Node?) -> Int? {
+    
+    var d = [Int: Bool]()
+    
+    let m = length(headA)
+    let n = length(headB)
+    
+    var node1 = headA
+    for _ in 1...m {
+        d[node1!.data] = true
+        node1 = node1?.next
+    }
+    
+    var node2 = headB
+    for _ in 1...n {
+        if d.keys.contains(node2!.data) {
+            return node2!.data
+        }
+        node2 = node2?.next
+    }
+    
+    return nil
+}
+
 
 // 1 2 3 4 5 6
 let node6 = Node(6)
@@ -91,4 +113,5 @@ let node10 = Node(10, node11)
 printLinkedList(node1)
 printLinkedList(node10)
 
-findMerge(headA: node1, headB: node10)
+findMergeBrout(headA: node1, headB: node10)
+findMergeUsingDictonary(headA: node1, headB: node10)
