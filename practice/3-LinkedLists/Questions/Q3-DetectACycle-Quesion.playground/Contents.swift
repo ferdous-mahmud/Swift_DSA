@@ -40,6 +40,23 @@ func hasCycle(first: Node) -> Bool {
     return false
 }
 
+// Time Complexity => O(n) and space O(1) // memory efficient
+func hasCycleTortoiseHare (first: Node) -> Bool {
+    var slow = first
+    var fast = first
+    
+    while fast.next != nil {
+        slow = slow.next!
+        fast = fast.next!.next!
+        
+        if slow.data == fast.data { // Cycle detected
+            return true
+        }
+    }
+    
+    return false
+}
+
 let node5 = Node(5)
 let node4 = Node(4)
 let node3 = Node(3)
@@ -53,3 +70,4 @@ node4.next = node5
 node5.next = node3
 
 hasCycle(first: head)
+hasCycleTortoiseHare(first: head)
