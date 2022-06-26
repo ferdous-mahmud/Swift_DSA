@@ -24,8 +24,19 @@ class Node {
     }
 }
 
+// Time Complexity => O(n) and space O(n)
 func hasCycle(first: Node) -> Bool {
-    // here...
+    var node = first
+    var dic = [Int: Bool]()
+    
+    while node.next != nil {
+        if dic[node.data] == true {
+            return true
+        }
+        dic[node.data] = true
+        node = node.next!
+    }
+    
     return false
 }
 
